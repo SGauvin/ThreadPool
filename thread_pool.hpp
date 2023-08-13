@@ -1,3 +1,6 @@
+#ifndef THREAD_POOL_H
+#define THREAD_POOL_H
+
 #include <concepts>
 #include <condition_variable>
 #include <functional>
@@ -103,3 +106,5 @@ private:
     std::queue<std::function<void ()>> m_tasks;
 #endif
 };
+
+#endif // THREAD_POOL_H 
