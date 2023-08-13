@@ -6,7 +6,7 @@ A C++20 compiler. If you have a C++23 compiler and a library that supports it, `
 
 # Usage
 ```cpp
-constexpr std::size_t num_threads = 4;
+static constexpr std::size_t num_threads = 4;
 ThreadPool pool(num_threads);
 
 using namespace std::literals::chrono_literals;
