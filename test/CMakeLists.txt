@@ -5,10 +5,9 @@ add_compile_definitions(TURBO_ENABLE_ENGINE_LOG)
 add_compile_definitions(TURBO_ENABLE_ASSERT)
 
 project(test)
+add_executable(${CMAKE_PROJECT_NAME} test.cpp)
 
-include_directories(../)
-file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS test.cpp)
-add_executable(${CMAKE_PROJECT_NAME} ${SOURCES})
+target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE ../)
 
 target_compile_options(${CMAKE_PROJECT_NAME} PRIVATE -Wall -Wextra -Wpedantic)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
