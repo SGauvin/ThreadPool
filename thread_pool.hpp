@@ -78,16 +78,16 @@ private:
         // In C++20, we must use std::function. We can't move the packaged_task into the function
         // with lambda capture, since it would make the function non-copyable. We must use C++23's
         // std::move_only_function for this.
-        auto task_pointer = new std::packaged_task<std::invoke_result_t<F, Args...>()>([&] {
+        auto task= new std::packaged_task<std::invoke_result_t<F, Args...>()>([&] {
             return function(std::forward<Args>(args)...);
         });
-        auto future = task_pointer->get_future();
+        auto future = task->get_future();
 
         {
             std::scoped_lock lock(m_mutex);
-            m_tasks.emplace([task_pointer] {
-                (*task_pointer)();
-                delete task_pointer;
+            m_tasks.emplace([task] {
+                (*task)();
+                delete task;
             });
         }
 #endif
