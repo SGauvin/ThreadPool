@@ -23,7 +23,7 @@ public:
                 while (true)
                 {
                     std::unique_lock lock(m_mutex);
-                    m_condition_variable.wait(lock, stop_token, [this, stop_token] {
+                    m_condition_variable.wait(lock, stop_token, [this] {
                         return !m_tasks.empty();
                     });
                     
